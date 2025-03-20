@@ -1,0 +1,129 @@
+// Include necessary header files
+#include <stdio.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "freertos/queue.h"
+#include "freertos/semphr.h"
+#include "esp_system.h"
+#include "driver/gpio.h"
+#include "esp_wifi.h"
+#include "nvs_flash.h"
+#include "mqtt_client.h"
+
+// Define GPIO pins for sensor and LED
+#define SENSOR_GPIO 4
+#define LED_GPIO 2
+
+// Function prototypes for tasks
+void producerTask(void *pvParameters);
+void consumerTask(void *pvParameters);
+void ledTask(void *pvParameters);
+void mqttTask(void *pvParameters);
+
+// Global variables for FreeRTOS queue, semaphore, and MQTT client
+QueueHandle_t queue;
+SemaphoreHandle_t ledSemaphore;
+esp_mqtt_client_handle_t mqtt_client;
+
+// MQTT event handler function
+void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event_id, void *event_data) {
+    esp_mqtt_event_handle_t event = event_data;
+    switch (event_id) {
+        case MQTT_EVENT_CONNECTED:
+            printf("MQTT Connected\n");
+            break;
+        case MQTT_EVENT_DISCONNECTED:
+            printf("MQTT Disconnected\n");
+            break;
+        case MQTT_EVENT_DATA:
+            printf("MQTT Message Received: %.*s\n", event->data_len, event->data);
+            break;
+        default:
+            break;
+    }
+}
+
+// Initialize MQTT connection
+void init_mqtt() {
+    esp_mqtt_client_config_t mqtt_cfg = {
+        .uri = "mqtt://broker.hivemq.com" // MQTT broker URI
+    };
+    mqtt_client = esp_mqtt_client_init(&mqtt_cfg);
+    esp_mqtt_client_register_event(mqtt_client, ESP_EVENT_ANY_ID, mqtt_event_handler, NULL);
+    esp_mqtt_client_start(mqtt_client);
+}
+
+// Main application function
+void app_main() {
+    nvs_flash_init(); // Initialize non-volatile storage (needed for Wi-Fi and MQTT)
+    init_mqtt(); // Start MQTT client
+    
+    queue = xQueueCreate(5, sizeof(int)); // Create a queue to store sensor data
+    ledSemaphore = xSemaphoreCreateBinary(); // Create a binary semaphore for LED control
+    
+    // Configure sensor GPIO as input
+    gpio_pad_select_gpio(SENSOR_GPIO);
+    gpio_set_direction(SENSOR_GPIO, GPIO_MODE_INPUT);
+    
+    // Configure LED GPIO as output
+    gpio_pad_select_gpio(LED_GPIO);
+    gpio_set_direction(LED_GPIO, GPIO_MODE_OUTPUT);
+    
+    // Create FreeRTOS tasks
+    xTaskCreate(producerTask, "Producer Task", 4096, NULL, 1, NULL);
+    xTaskCreate(consumerTask, "Consumer Task", 4096, NULL, 1, NULL);
+    xTaskCreate(ledTask, "LED Task", 2048, NULL, 1, NULL);
+    xTaskCreate(mqttTask, "MQTT Task", 4096, NULL, 1, NULL);
+}
+
+// Producer Task: Reads sensor data and sends it to the queue
+void producerTask(void *pvParameters) {
+    int count = 0;
+    while (1) {
+        int sensorValue = gpio_get_level(SENSOR_GPIO); // Read sensor value
+        printf("Producing: %d (Sensor: %d)\n", count, sensorValue);
+        if (xQueueSend(queue, &count, pdMS_TO_TICKS(100)) == pdTRUE) {
+            printf("Sent %d to queue\n", count);
+        }
+        if (sensorValue == 1) { // If sensor detects motion, trigger LED
+            xSemaphoreGive(ledSemaphore);
+        }
+        count++;
+        vTaskDelay(pdMS_TO_TICKS(1000)); // Delay for 1 second
+    }
+}
+
+// Consumer Task: Retrieves data from the queue and publishes to MQTT
+void consumerTask(void *pvParameters) {
+    int receivedValue;
+    while (1) {
+        if (xQueueReceive(queue, &receivedValue, pdMS_TO_TICKS(500)) == pdTRUE) {
+            printf("Consumed: %d\n", receivedValue);
+            char message[50];
+            sprintf(message, "Sensor Data: %d", receivedValue);
+            esp_mqtt_client_publish(mqtt_client, "/esp32/sensor", message, 0, 1, 0);
+        }
+        vTaskDelay(pdMS_TO_TICKS(2000)); // Delay for 2 seconds
+    }
+}
+
+// LED Task: Controls LED based on semaphore signal
+void ledTask(void *pvParameters) {
+    while (1) {
+        if (xSemaphoreTake(ledSemaphore, portMAX_DELAY)) { // Wait for semaphore signal
+            printf("LED ON\n");
+            gpio_set_level(LED_GPIO, 1);
+            vTaskDelay(pdMS_TO_TICKS(500)); // Keep LED on for 500ms
+            printf("LED OFF\n");
+            gpio_set_level(LED_GPIO, 0);
+        }
+    }
+}
+
+// MQTT Task: Sends periodic status messages via MQTT
+void mqttTask(void *pvParameters) {
+    while (1) {
+        esp_mqtt_client_publish(mqtt_client, "/esp32/status", "ESP32 is running", 0, 1, 0);
+        vTaskDelay(pdMS_TO_TICKS(10000)); // Delay for 10 seconds
+    }
+}

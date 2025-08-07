@@ -3,13 +3,12 @@
  
 NOTE: Add the wifi library for ESP32 for wifi connection.
 
-NOTE: In real world project the Producer Task can also be replaced with sensors like DHT11 or DHT22(Temperature & Humudity sensors). 
+NOTE: We use sensors like DHT11 or DHT22(Temperature & Humudity sensors). 
 
-NOTE: If you are using real/physical DHT11 or DHT22 sensor then, you need to add DHT sensor library for ESP32 to your code, So that ESP32 can communicate with sensor.
+NOTE: Since you are using DHT11 or DHT22 sensor then, you need to add DHT sensor library for ESP32 to your code, So that ESP32 can communicate with sensor.
 
 NOTE: You need PubSubClient library so that your ESP32 understands MQTT communication.
 
-Use Case Scenarios are such as IoT Sensor Data Streaming.
 The ESP32 reads sensor data and publishes it to an MQTT broker (e.g., HiveMQ, Mosquitto, AWS IoT).
 
 NOTE: An MQTT broker is a server that receives all messages from the clients and then routes the messages to the appropriate destination clients.

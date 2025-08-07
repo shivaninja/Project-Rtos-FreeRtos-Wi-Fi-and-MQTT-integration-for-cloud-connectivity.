@@ -31,9 +31,9 @@ Smart Home Automation
 A motion sensor can trigger an MQTT message, notifying a home automation system.
 The LED acts as an alert when motion is detected.
 Remote Monitoring & Control
-
 The ESP32 sends periodic status updates to the cloud.
 A remote client can send commands via MQTT to control ESP32 operations.
+
 
 
 

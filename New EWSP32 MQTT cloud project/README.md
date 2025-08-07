@@ -17,6 +17,7 @@ New Features Added
 This updated FreeRTOS ESP32 project now includes Wi-Fi and MQTT integration for cloud connectivity.
 Use Case Scenarios are such as IoT Sensor Data Streaming.
 The ESP32 reads sensor data and publishes it to an MQTT broker (e.g., HiveMQ, Mosquitto, AWS IoT).
+
 NOTE: An MQTT broker is a server that receives all messages from the clients and then routes the messages to the appropriate destination clients.
 You can use HiveMQ, it is an temporary free MQTT-broker and a client based messaging platform which uses MQTT protocol for fast, reliable and efficient bi-directional data transfer to and from IoT devices.
 You can use different types of HiveMQ MQTT brokers such as HiveMQ-cloud(Cloud based) or HiveMQ-Broker(self hosted).

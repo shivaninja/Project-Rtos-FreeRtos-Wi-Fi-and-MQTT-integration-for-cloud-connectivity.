@@ -8,7 +8,8 @@ Real-World Applications
 IoT Sensor Monitoring
 
 The producer simulates a real sensor (e.g., motion detector, temperature sensor).
-When an event is detected, data is sent to a consumer for logging or further processing.
+When an event is detected, data is sent to a consumer for logging or further processing. 
+NOTE: In real world project the Producer Task can also be replaced with sensors like DHT11 or DHT22(Temperature & Humudity sensors). 
 The LED task visually indicates an event.
 Home Automation
 
@@ -37,4 +38,5 @@ The LED acts as an alert when motion is detected.
 Remote Monitoring & Control
 
 The ESP32 sends periodic status updates to the cloud.
+
 A remote client can send commands via MQTT to control ESP32 operations.

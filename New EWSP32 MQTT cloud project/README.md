@@ -9,8 +9,9 @@ NOTE: If you are using real/physical DHT11 or DHT22 sensor then, you need to add
 
 NOTE: You might also use PubSubClient library so that your ESP32 understands MQTT communication. 
 NOTE : Node-RED is an open-source, visual programming tool/flow-based programming tool that uses nodes and edges to program & is primarily used for wiring together hardware devices, APIs, and online services, especially within the context of the Internet of Things (IoT). It provides a visual, low-code development environment that allows users to create applications by dragging and dropping "nodes" and connecting them to form "flows"/edges.
-NOTE: Install Node-Red and Node-Red dashboard.
+NOTE: Install Node-Red and Node-Red dashboard. Then after installing node-red, it will output the IP of server that you can use. Check that IP in browser.
 NOTE: The Node-red dashboard is different from just Node-red. Once you program the system using Node-Red, You need to also install the node red dashboard which outputs the IP address, If you check the IP address it would display all the telemetry data on dashboard.
+NOTE: USING NODE-RED YOU WILL ESENTIALLY CREATE THE SERVER & PROGRAM THE SERVER BEHAVIOUR, WORKFLOW , SYSTEM. YOU WILL GIVE SERVER MULTIPLE PARAMETERS SUCH AS TO WHAT CLIENTS AND SENSERS THE SERVER NEEDS TO CONNECT AND HOW TO CONNECT,  SUCH AS WHAT PROTOCOL SHOULD BE USED, WHAT TO DISPLAY. THEN YOU NEED TO CONNECT THE NODE-RED TO THE NODE-RED DASHBOARD AND DEPLOY NODE-RED DASHBOARD. THEN YOU IF YOU COPY THE IP AND CHECK YOU CAN GRAPHICALLY MONITER THE TELEMETRY DATA FROM MICROCONTROLLER SENSORS.
 
 Home Automation
 Data can be logged or sent to a cloud service via MQTT.

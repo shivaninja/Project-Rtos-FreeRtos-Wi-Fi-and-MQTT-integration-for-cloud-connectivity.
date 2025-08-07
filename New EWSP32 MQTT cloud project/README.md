@@ -8,6 +8,9 @@ NOTE: In real world project the Producer Task can also be replaced with sensors 
 NOTE: If you are using real/physical DHT11 or DHT22 sensor then, you need to add DHT sensor library for ESP32 to your code, So that ESP32 can communicate with sensor.
 
 NOTE: You might also use PubSubClient library so that your ESP32 understands MQTT communication. 
+NOTE : Node-RED is an open-source, visual programming tool/flow-based programming tool that uses nodes and edges to program & is primarily used for wiring together hardware devices, APIs, and online services, especially within the context of the Internet of Things (IoT). It provides a visual, low-code development environment that allows users to create applications by dragging and dropping "nodes" and connecting them to form "flows"/edges.
+NOTE: Install Node-Red and Node-Red dashboard.
+NOTE: The Node-red dashboard is different from just Node-red. Once you program the system using Node-Red, You need to also install the node red dashboard which outputs the IP address, If you check the IP address it would display all the telemetry data on dashboard.
 
 Home Automation
 Data can be logged or sent to a cloud service via MQTT.

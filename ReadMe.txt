@@ -22,10 +22,10 @@ The semaphore ensures an action (e.g., turning on an LED) happens only when requ
 
 New Features Added
 This updated FreeRTOS ESP32 project now includes Wi-Fi and MQTT integration for cloud connectivity.
-Use Case Scenarios
-IoT Sensor Data Streaming
+Use Case Scenarios are such as IoT Sensor Data Streaming.
 The ESP32 reads sensor data and publishes it to an MQTT broker (e.g., HiveMQ, Mosquitto, AWS IoT).
-You can use HiveMQ, it is an temporary free MQTT broker and a client based messaging platform which uses MQTT protocol for fast, reliable and efficient bi-directional data transfer to and from IoT devices.
+NOTE: An MQTT broker is a server that receives all messages from the clients and then routes the messages to the appropriate destination clients.
+You can use HiveMQ, it is an temporary free MQTT-broker and a client based messaging platform which uses MQTT protocol for fast, reliable and efficient bi-directional data transfer to and from IoT devices.
 Any subscribed client (e.g., a dashboard, cloud server) can receive and analyze this data.
 
 Smart Home Automation
@@ -34,6 +34,7 @@ The LED acts as an alert when motion is detected.
 Remote Monitoring & Control
 The ESP32 sends periodic status updates to the cloud.
 A remote client can send commands via MQTT to control ESP32 operations.
+
 
 
 

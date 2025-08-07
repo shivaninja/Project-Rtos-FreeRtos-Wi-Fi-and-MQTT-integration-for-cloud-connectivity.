@@ -11,7 +11,8 @@ The producer simulates a real sensor (e.g., motion detector, temperature sensor)
 When an event is detected, data is sent to a consumer for logging or further processing. 
 NOTE: Add the wifi library for ESP32 for wifi connection.
 NOTE: In real world project the Producer Task can also be replaced with sensors like DHT11 or DHT22(Temperature & Humudity sensors). 
-If you are using real/physical DHT11 or DHT22 sensor then, you need to add DHT sensor library for ESPx to your code.
+If you are using real/physical DHT11 or DHT22 sensor then, you need to add DHT sensor library for ESP32 to your code, So that ESP32 can communicate with sensor.
+NOTE: You might also use PubSubClient library so, that your ESP32 understands MQTT. 
 The LED task visually indicates an event.
 Home Automation
 A motion sensor triggers the LED, mimicking an automatic light system.
@@ -33,6 +34,7 @@ Remote Monitoring & Control
 
 The ESP32 sends periodic status updates to the cloud.
 A remote client can send commands via MQTT to control ESP32 operations.
+
 
 
 

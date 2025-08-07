@@ -9,6 +9,14 @@ NOTE: If you are using real/physical DHT11 or DHT22 sensor then, you need to add
 
 NOTE: You might also use PubSubClient library so that your ESP32 understands MQTT communication.
 
+Use Case Scenarios are such as IoT Sensor Data Streaming.
+The ESP32 reads sensor data and publishes it to an MQTT broker (e.g., HiveMQ, Mosquitto, AWS IoT).
+
+NOTE: An MQTT broker is a server that receives all messages from the clients and then routes the messages to the appropriate destination clients.
+You can use HiveMQ, it is an temporary free MQTT-broker and a client based messaging platform which uses MQTT protocol for fast, reliable and efficient bi-directional data transfer to and from IoT devices.
+You can use different types of HiveMQ MQTT brokers such as HiveMQ-cloud(Cloud based) or HiveMQ-Broker(self hosted).
+Any subscribed client (e.g., a dashboard, cloud server) can receive and analyze this data.
+
 NOTE : Node-RED is an open-source, visual programming tool/flow-based programming tool that uses nodes and edges to program & is primarily used for wiring together hardware devices, APIs, and online services, especially within the context of the Internet of Things (IoT). It provides a visual, low-code development environment that allows users to create applications by dragging and dropping "nodes" and connecting them to form "flows"/edges
 
 NOTE: Install Node-Red and Node-Red dashboard. Then after installing node-red, it will output the IP of server that you can use. Check that IP in browser.
@@ -25,15 +33,9 @@ Home Automation
 Data can be logged or sent to a cloud service via MQTT.
 Interrupt-Driven Event Handling
 
-New Features Added
-This updated FreeRTOS ESP32 project now includes Wi-Fi and MQTT integration for cloud connectivity.
 Use Case Scenarios are such as IoT Sensor Data Streaming.
 The ESP32 reads sensor data and publishes it to an MQTT broker (e.g., HiveMQ, Mosquitto, AWS IoT).
 
-NOTE: An MQTT broker is a server that receives all messages from the clients and then routes the messages to the appropriate destination clients.
-You can use HiveMQ, it is an temporary free MQTT-broker and a client based messaging platform which uses MQTT protocol for fast, reliable and efficient bi-directional data transfer to and from IoT devices.
-You can use different types of HiveMQ MQTT brokers such as HiveMQ-cloud(Cloud based) or HiveMQ-Broker(self hosted).
-Any subscribed client (e.g., a dashboard, cloud server) can receive and analyze this data.
 
 Smart Home Automation
 A motion sensor can trigger an MQTT message, notifying a home automation system.

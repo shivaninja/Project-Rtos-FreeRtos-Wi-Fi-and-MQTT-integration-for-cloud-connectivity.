@@ -16,6 +16,8 @@ You can use HiveMQ, it is an temporary free MQTT-broker and a client based messa
 You can use different types of HiveMQ MQTT brokers such as HiveMQ-cloud(Cloud based) or HiveMQ-Broker(self hosted).
 Any subscribed client (e.g., a dashboard, cloud server) can receive and analyze this data.
 
+NOTE: Anyone who subscribes to HIVE-MQ will receive data from the HIVE-MQ & in our case its the NODE-RED. So, Node-red receives data.
+
 NOTE : Node-RED is an open-source, visual programming tool/flow-based programming tool that uses nodes and edges to program & is primarily used for wiring together hardware devices, APIs, and online services, especially within the context of the Internet of Things (IoT). It provides a visual, low-code development environment that allows users to create applications by dragging and dropping "nodes" and connecting them to form "flows"/edges
 
 NOTE: Install Node-Red and Node-Red dashboard. Then after installing node-red, it will output the IP of server that you can use. Check that IP in browser.
@@ -24,7 +26,7 @@ NOTE: The Node-red dashboard is different from just Node-red. Once you program t
 
 "
 
-NOTE: WITH NODE-RED YOU WILL ESENTIALLY CREATE THE SERVER & PROGRAM THE SERVER BEHAVIOUR, WORKFLOW , SYSTEM. YOU WILL GIVE SERVER MULTIPLE PARAMETERS SUCH AS TO WHAT CLIENTS AND SENSERS THE SERVER NEEDS TO CONNECT AND HOW TO CONNECT,  SUCH AS WHAT PROTOCOL SHOULD BE USED, WHAT TO DISPLAY. THEN YOU NEED TO CONNECT THE NODE-RED TO THE NODE-RED DASHBOARD AND DEPLOY NODE-RED DASHBOARD. THEN YOU IF YOU COPY THE IP AND CHECK YOU CAN GRAPHICALLY MONITER THE TELEMETRY DATA FROM MICROCONTROLLER SENSORS.
+NOTE: SO NODE-RED ACTS AS HIVE-MQ SUBSCRIBER(RECEIVER OF DATA).  NODE-RED IS ALSO A TOOL TO CREATE AND PROGRAM SERVER, SO YOU WILL ESENTIALLY CREATE THE SERVER & PROGRAM THE SERVER BEHAVIOUR, WORKFLOW , SYSTEM. YOU WILL GIVE SERVER MULTIPLE PARAMETERS SUCH AS TO WHAT CLIENTS AND SENSERS THE SERVER NEEDS TO CONNECT AND HOW TO CONNECT,  SUCH AS WHAT PROTOCOL SHOULD BE USED, WHAT TO DISPLAY. THEN YOU NEED TO CONNECT THE NODE-RED TO THE NODE-RED DASHBOARD AND DEPLOY NODE-RED DASHBOARD. THEN YOU IF YOU COPY THE IP AND CHECK YOU CAN GRAPHICALLY MONITER THE TELEMETRY DATA FROM MICROCONTROLLER SENSORS.
 
 "
 

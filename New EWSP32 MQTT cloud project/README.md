@@ -36,11 +36,11 @@ A remote client can send commands via MQTT to control ESP32 operations.
 ### Step 1: Install the Required Libraries
 - Open an Arduino IDE --> Tools --> Manage Libraries
 - Search and install the following libraries
-    ```
+    
     pubsubclient
     WiFi
     DHT sensor library for ESPx
-    ```
+    
 
 ### Step 2: Hardware Schematic
 - Four pin DHT22
